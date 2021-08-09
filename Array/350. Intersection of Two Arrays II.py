@@ -3,14 +3,24 @@
 class Solution:
     def intersect(self, nums1, nums2):
         intersect = []
-        for num in nums2:
-            if num in nums1:
-                intersect.append(num)
+        nums1 = sorted(nums1)
+        nums2 = sorted(nums2)
+        i, j = 0, 0
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] == nums2[j]:
+                intersect.append(nums1[i])
+                i += 1
+                j += 1
+            elif nums1[i] > nums2[j]:
+                j += 1
+            else:
+                i += 1
+
         return intersect
 
 
-nums1 = [1,2,2,1]
-nums2 = [2,2]
+nums1 = [4,9,5]
+nums2 = [9,4,9,8,4]
 
 sol = Solution()
-sol.intersect(nums1, nums2)
+print(sol.intersect(nums1, nums2))
